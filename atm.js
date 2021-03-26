@@ -6,7 +6,7 @@ const prompt = require("prompt-sync")();
 
     function validatePin(){
        let userInput = prompt("what is your pin?");
-        if(parseInt(userInput, 10) === account.pin){
+        if(parseInt(userInput === account.pin)){
             return true;
         }
         else{
@@ -15,23 +15,37 @@ const prompt = require("prompt-sync")();
     }
 
 
-
     function getBalance(){
-        alert("your balance is:" +  account.balance);
+        console.log(account.balance);
+       return account.balance;
     }
 
-
-    function withdraw(money){  
-        
+    function withdraw(takeMoney){ 
+        account.balance = account.balance - takeMoney;
+    
+    
     }
 
-    function deposit(money){
+    function deposit(giveMoney){
+        account.balance = account.balance + giveMoney;
 
     }
+deposit(100);
+withdraw(200);
+getBalance(); 
 
+    function done(){
+        let leave = confirm("you have completed your transaction");
+        if (leave){
+            window.close();
+        }else{
+            atm();
+        }
+    }
 module.exports = {
-    validatePin,
+    validatePin,        
     getBalance,
     withdraw,
-    deposit
+    deposit,
+    done
 };
